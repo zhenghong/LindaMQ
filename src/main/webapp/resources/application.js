@@ -44,7 +44,7 @@ var client = Stomp.over(socket);
 
 client.connect('user', 'password', function(frame) {
 
-  client.subscribe("/ws/asyncQueue", function(message) {
+  client.subscribe("/queue/asyncQueue", function(message) {
     var point = [ (new Date()).getTime(), parseInt(message.body) ];
     var shift = randomData.data.length > 60;
     randomData.addPoint(point, true, shift);
