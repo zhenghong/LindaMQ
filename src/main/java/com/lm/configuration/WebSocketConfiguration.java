@@ -13,7 +13,6 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(final StompEndpointRegistry registry) {
-    	
         registry.addEndpoint("/random").withSockJS();
     }
 
@@ -21,18 +20,18 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
     public void configureMessageBroker(final MessageBrokerRegistry registry) {
     	
     	registry.enableStompBrokerRelay("/queue/","/topic/")
-        .setRelayHost("100.100.11.188").setRelayPort(61613); // 设置broker的地址及端口号
+        .setRelayHost("100.100.11.188").setRelayPort(61613)
+        .setSystemHeartbeatReceiveInterval(2000)
+        .setSystemHeartbeatSendInterval(2000); // 设置broker的地址及端口号
     	registry.setApplicationDestinationPrefixes("/ws");
     }
 
 	@Override
 	public void configureClientInboundChannel(ChannelRegistration arg0) {
-		
 	}
 
 	@Override
 	public void configureClientOutboundChannel(ChannelRegistration arg0) {
-		
 	}
 
 }
